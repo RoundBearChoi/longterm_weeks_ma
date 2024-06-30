@@ -34,7 +34,6 @@ def plot_moving_average(weeks):
     fig, ax = plt.subplots(figsize=(14, 7))
     ax.plot(df['moving_avg'], label=f'{weeks}-Week Moving Average', linewidth=1)
     ax.plot(df['close'], label='Bitcoin Price', linewidth=1)
-    ax.set_title('Bitcoin Price and Moving Average')
     ax.set_ylabel('Price (USD)')
     ax.legend()
     ax.grid(False)
