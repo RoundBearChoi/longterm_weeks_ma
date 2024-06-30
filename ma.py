@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import cryptocompare
 from datetime import datetime
 
@@ -30,13 +31,17 @@ def plot_moving_average(weeks):
 
     # Plot
     plt.style.use('ggplot')
-    plt.figure(figsize=(14, 7))
-    plt.plot(df['moving_avg'], label=f'{weeks}-Week Moving Average', linewidth=1)
-    plt.plot(df['close'], label='Bitcoin Price', linewidth=1)
-    plt.title('Bitcoin Price and Moving Average')
-    plt.ylabel('Price (USD)')
-    plt.legend()
-    plt.grid(False)
+    fig, ax = plt.subplots(figsize=(14, 7))
+    ax.plot(df['moving_avg'], label=f'{weeks}-Week Moving Average', linewidth=1)
+    ax.plot(df['close'], label='Bitcoin Price', linewidth=1)
+    ax.set_title('Bitcoin Price and Moving Average')
+    ax.set_ylabel('Price (USD)')
+    ax.legend()
+    ax.grid(False)
+
+    # Add commas to y-axis
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
+
     plt.show()
 
 
